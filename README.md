@@ -1,1 +1,1 @@
-# Academics-AI
+# Acmics-AI
