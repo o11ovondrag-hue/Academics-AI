@@ -3,31 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academia-AI</title>
+  <title>Academics AI Platform</title>
   <link rel="stylesheet" href="style.css">
+  <!-- PDF.js library for document parsing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';</script>
 </head>
 <body>
 
-  <header class="main-header">
-  <div class="logo">
-  <div class="logo-icon">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-      <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-    </svg>
-  </div>
-  <span class="logo-text">Academia-AI</span>
-</div>
-    
-    <nav class="nav-menu">
+  <!-- Navigation -->
+  <header class="header">
+    <div class="logo">Academics-AI</div>
+    <nav class="nav-links">
       <button class="nav-item active" data-tab="generator" data-lang-key="nav_generator">Генератор</button>
       <button class="nav-item" data-tab="registry" data-lang-key="nav_registry">Реестр курсов</button>
       <button class="nav-item" data-tab="analytics" data-lang-key="nav_analytics">Анализ источников</button>
       <button class="nav-item" data-tab="time" data-lang-key="nav_time">Тайм-менеджмент</button>
     </nav>
-
-    <!-- Переключатель языков -->
     <div class="lang-switch">
       <button class="lang-btn active" data-lang="ru">RU</button>
       <button class="lang-btn" data-lang="en">EN</button>
@@ -36,38 +28,37 @@
   </header>
 
   <main class="container">
+    <!-- TAB 1: GENERATOR -->
+    <section id="tab-generator" class="tab-content">
+      <div class="card-header">
+        <h1 data-lang-key="gen_title">Генератор академических программ</h1>
+        <p data-lang-key="gen_subtitle">Автоматическое формирование силлабуса и учебного плана</p>
+      </div>
 
-    <!-- Вкладка 1: Генератор -->
-    <section id="tab-generator" class="tab-content active">
-      <h1 data-lang-key="gen_title">Генератор академических программ</h1>
-      <p class="subtitle" data-lang-key="gen_subtitle">Автоматическое формирование силлабуса и учебного плана</p>
-
-      <form id="generator-form" class="card">
+      <form id="generator-form" class="form-grid">
         <div class="form-group">
-          <label for="course-title" data-lang-key="lbl_title">Название дисциплины</label>
-          <input type="text" id="course-title" class="form-control" placeholder="например, Теория международных отношений" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="course-level" data-lang-key="lbl_level">Академический уровень</label>
-            <select id="course-level" class="form-control">
-              <option value="ba_basic" data-lang-key="opt_ba_basic">Бакалавриат — базовый</option>
-              <option value="ba_adv" data-lang-key="opt_ba_adv">Бакалавриат — продвинутый</option>
-              <option value="ma" data-lang-key="opt_ma">Магистратура</option>
-              <option value="phd" data-lang-key="opt_phd">PhD / Докторантура</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="course-weeks" data-lang-key="lbl_weeks">Длительность (недель)</label>
-            <input type="number" id="course-weeks" class="form-control" value="15" min="1" max="30">
-          </div>
+          <label data-lang-key="lbl_title">Название дисциплины</label>
+          <input type="text" id="course-title" required placeholder="Например: Цифровая история и анализ данных">
         </div>
 
         <div class="form-group">
-          <label for="course-domain" data-lang-key="lbl_domain">Предметная область</label>
-          <select id="course-domain" class="form-control">
+          <label data-lang-key="lbl_level">Академический уровень</label>
+          <select id="course-level">
+            <option value="ba_basic" data-lang-key="opt_ba_basic">Бакалавриат — базовый</option>
+            <option value="ba_adv" data-lang-key="opt_ba_adv">Бакалавриат — продвинутый</option>
+            <option value="ma" data-lang-key="opt_ma">Магистратура</option>
+            <option value="phd" data-lang-key="opt_phd">PhD / Докторантура</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label data-lang-key="lbl_weeks">Длительность (недель)</label>
+          <input type="number" id="course-weeks" value="15" min="1" max="30">
+        </div>
+
+        <div class="form-group">
+          <label data-lang-key="lbl_domain">Предметная область</label>
+          <select id="course-domain">
             <option value="history" data-lang-key="opt_history">История и Источниковедение</option>
             <option value="linguistics" data-lang-key="opt_linguistics">Языкознание и Лингвистика</option>
             <option value="political" data-lang-key="opt_political">Политология и Международные отношения</option>
@@ -76,91 +67,73 @@
           </select>
         </div>
 
-        <button type="submit" id="btn-generate" class="btn-primary" data-lang-key="btn_generate">Сформировать курс</button>
+        <button type="submit" class="btn-primary" data-lang-key="btn_generate">Сформировать курс</button>
       </form>
 
       <div id="loader" class="loader hidden" data-lang-key="msg_loading">Генерация учебного плана... Пожалуйста, подождите.</div>
-
       <div id="result-container" class="hidden">
         <div id="output-content"></div>
       </div>
     </section>
 
-    <!-- Вкладка 2: Реестр -->
+    <!-- TAB 2: REGISTRY -->
     <section id="tab-registry" class="tab-content hidden">
-      <h1 data-lang-key="reg_title">Реестр сохраненных курсов</h1>
-      <p class="subtitle" data-lang-key="reg_subtitle">Ваша локальная библиотека силлабусов</p>
-      <ul id="syllabi-list" class="card list-reset"></ul>
+      <div class="card-header">
+        <h1 data-lang-key="reg_title">Реестр сохраненных курсов</h1>
+        <p data-lang-key="reg_subtitle">Ваша локальная библиотека силлабусов</p>
+      </div>
+      <ul id="syllabi-list" class="syllabi-list"></ul>
     </section>
 
-    <!-- Вкладка 3: Анализ -->
+    <!-- TAB 3: ANALYTICS -->
     <section id="tab-analytics" class="tab-content hidden">
-      <h1 data-lang-key="an_title">Академический разбор источников</h1>
-      <p class="subtitle" data-lang-key="an_subtitle">Глубокий 8-уровневый разбор текстов и документов</p>
+      <div class="card-header">
+        <h1 data-lang-key="an_title">Академический разбор источников</h1>
+        <p data-lang-key="an_subtitle">Глубокий 8-уровневый разбор текстов и документов</p>
+      </div>
 
-      <div class="card">
+      <div class="form-grid">
         <div class="form-group">
-          <label for="file-input" data-lang-key="lbl_file">Загрузить PDF или TXT файл:</label>
-          <input type="file" id="file-input" accept=".pdf,.txt" class="form-control">
-          <small id="file-status" style="color: #0284c7; display: block; margin-top: 4px;"></small>
+          <label data-lang-key="lbl_file">Загрузить PDF или TXT файл:</label>
+          <input type="file" id="file-input" accept=".pdf,.txt">
+          <span id="file-status" class="file-status"></span>
         </div>
 
         <div class="form-group">
-          <label for="source-text-input" data-lang-key="lbl_text">Или вставьте текст вручную:</label>
-          <textarea id="source-text-input" class="form-control" rows="6"></textarea>
+          <label data-lang-key="lbl_text">Или вставьте текст вручную:</label>
+          <textarea id="source-text-input" rows="5" placeholder="Вставьте научную статью или документ..."></textarea>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="source-category" data-lang-key="lbl_category">Категория источника:</label>
-            <select id="source-category" class="form-control">
-              <option value="article" data-lang-key="opt_art">Научная статья</option>
-              <option value="book" data-lang-key="opt_book">Монография / Глава книги</option>
-              <option value="archive" data-lang-key="opt_arch">Исторический архивный документ</option>
-              <option value="policy" data-lang-key="opt_pol">Аналитический доклад</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="source-focus" data-lang-key="lbl_focus">Фокус анализа:</label>
-            <select id="source-focus" class="form-control">
-              <option value="balanced" data-lang-key="opt_f_bal">Общий сбалансированный разбор</option>
-              <option value="methodology" data-lang-key="opt_f_meth">Акцент на методологии</option>
-              <option value="sources" data-lang-key="opt_f_src">Акцент на источниках и цитатах</option>
-              <option value="context" data-lang-key="opt_f_ctx">Историко-политологический контекст</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="button" id="btn-analyze-text" class="btn-primary" data-lang-key="btn_analyze">Провести разбор</button>
+        <button id="btn-analyze-text" class="btn-primary" data-lang-key="btn_analyze">Провести разбор</button>
       </div>
 
       <div id="analytics-loader" class="loader hidden" data-lang-key="msg_analyzing">Идет анализ текста...</div>
       <div id="analytics-output" class="hidden"></div>
     </section>
 
-    <!-- Вкладка 4: Тайм-менеджмент -->
+    <!-- TAB 4: TIME MANAGEMENT -->
     <section id="tab-time" class="tab-content hidden">
-      <h1 data-lang-key="time_title">Калькулятор учебной нагрузки</h1>
-      <p class="subtitle" data-lang-key="time_subtitle">Оценка затрат времени и кредитов ECTS</p>
+      <div class="card-header">
+        <h1 data-lang-key="time_title">Калькулятор учебной нагрузки</h1>
+        <p data-lang-key="time_subtitle">Оценка затрат времени и кредитов ECTS</p>
+      </div>
 
-      <div class="card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="calc-pages" data-lang-key="lbl_pages">Общий объем страниц для чтения:</label>
-            <input type="number" id="calc-pages" class="form-control" value="300">
-          </div>
-          <div class="form-group">
-            <label for="calc-weeks" data-lang-key="lbl_calc_weeks">Количество недель курса:</label>
-            <input type="number" id="calc-weeks" class="form-control" value="15">
-          </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label data-lang-key="lbl_pages">Общий объем страниц для чтения:</label>
+          <input type="number" id="calc-pages" value="300" min="1">
         </div>
-        <button type="button" id="btn-calc" class="btn-primary" data-lang-key="btn_calc">Рассчитать нагрузку</button>
+
+        <div class="form-group">
+          <label data-lang-key="lbl_calc_weeks">Количество недель курса:</label>
+          <input type="number" id="calc-weeks" value="15" min="1">
+        </div>
+
+        <button id="btn-calc" class="btn-primary" data-lang-key="btn_calc">Рассчитать нагрузку</button>
       </div>
     </section>
-
   </main>
 
-  <script src="script.js?v=7.1.0"></script>
+  <script src="script.js"></script>
 </body>
 </html>
