@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lbl_file: "Загрузить PDF или TXT файл:", lbl_text: "Или вставьте текст вручную:", lbl_category: "Категория источника:", lbl_focus: "Фокус анализа:",
       opt_art: "Научная статья", opt_book: "Монография / Глава книги", opt_arch: "Исторический архивный документ", opt_pol: "Аналитический доклад",
       opt_f_bal: "Общий сбалансированный разбор", opt_f_meth: "Акцент на методологии", opt_f_src: "Акцент на источниках и цитатах", opt_f_ctx: "Историко-политологический контекст",
-      btn_analyze: "Провести разбор", msg_analyzing: "Идет анализ текста...",
+      btn_analyze: "Провести разбор", msg_analyzing: "Идет глубокий анализ текста...",
       time_title: "Калькулятор учебной нагрузки", time_subtitle: "Оценка затрат времени и кредитов ECTS",
       lbl_pages: "Общий объем страниц для чтения:", lbl_calc_weeks: "Количество недель курса:", btn_calc: "Рассчитать нагрузку",
       level_label: "Уровень", weeks_label: "Недель", week_str: "Неделя", delete_btn: "Удалить", open_btn: "Открыть", close_btn: "Закрыть", no_courses: "Нет сохраненных курсов",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lbl_file: "Upload PDF or TXT file:", lbl_text: "Or paste text manually:", lbl_category: "Source Category:", lbl_focus: "Analysis Focus:",
       opt_art: "Journal Article", opt_book: "Monograph / Book Chapter", opt_arch: "Historical Archival Document", opt_pol: "Policy Paper",
       opt_f_bal: "Balanced Overview", opt_f_meth: "Focus on Methodology", opt_f_src: "Focus on Sources & Citations", opt_f_ctx: "Historical & Political Context",
-      btn_analyze: "Analyze Text", msg_analyzing: "Analyzing text...",
+      btn_analyze: "Analyze Text", msg_analyzing: "Deeply analyzing text...",
       time_title: "Workload Calculator", time_subtitle: "Estimate reading hours and ECTS credits",
       lbl_pages: "Total pages to read:", lbl_calc_weeks: "Course duration (weeks):", btn_calc: "Calculate Load",
       level_label: "Level", weeks_label: "Weeks", week_str: "Week", delete_btn: "Delete", open_btn: "Open", close_btn: "Close", no_courses: "No saved courses",
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lbl_file: "PDF немесе TXT файлын жүктеу:", lbl_text: "Немесе мәтінді қолмен қойыңыз:", lbl_category: "Дереккөз санаты:", lbl_focus: "Талдау бағыты:",
       opt_art: "Ғылыми мақала", opt_book: "Монография / Кітап тарауы", opt_arch: "Тарихи архивтік құжат", opt_pol: "Талдамалық баяндама",
       opt_f_bal: "Жалпы теңгерімді талдау", opt_f_meth: "Әдіснамаға басымдық беру", opt_f_src: "Дереккөздер мен иектерге басымдық", opt_f_ctx: "Тарихи-саяси контекст",
-      btn_analyze: "Талдау жүргізу", msg_analyzing: "Мәтін талдануда...",
+      btn_analyze: "Талдау жүргізу", msg_analyzing: "Мәтін терең талдануда...",
       time_title: "Оқу жүктемесінің калькуляторы", time_subtitle: "Уақыт пен ECTS кредиттерін есептеу",
       lbl_pages: "Оқитын беттердің жалпы көлемі:", lbl_calc_weeks: "Курстың апта саны:", btn_calc: "Жүктемені есептеу",
       level_label: "Деңгейі", weeks_label: "Апта", week_str: "Апта", delete_btn: "Жою", open_btn: "Ашу", close_btn: "Жабу", no_courses: "Сақталған курстар жоқ",
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sec2: "2. Негізгі тезистік база және зерттеу сұрақтары",
       sec3: "3. Теориялық-әдіснамалық шеңбер және тұжырымдар",
       sec4: "4. Әдіснама және деректер көздері",
-      sec5: "5. Негізгі эмппирикалық нәтижелер",
+      sec5: "5. Негізгі эмпирикалық нәтижелер",
       sec6: "6. Академиялық үлес және практикалық маңызы",
       sec7: "7. Сын тұрғысынан бағалау және шектеулер",
       sec8: "8. Дәйексөздер мен негізгі үзінділер"
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // 2. REGISTRY MODULE (Open / Close buttons)
+  // 2. REGISTRY MODULE
   function renderRegistry() {
     const list = document.getElementById('syllabi-list');
     if (!list) return;
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. ANALYTICS MODULE (Multilingual + Grid UI)
+  // 3. ANALYTICS MODULE (Углубленная детализация + объём 40 000 символов)
   const fileInput = document.getElementById('file-input');
   if (fileInput) {
     fileInput.addEventListener('change', async (e) => {
@@ -358,10 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const t = i18n[currentLang];
 
-      const prompt = `Проведи аналитический разбор текста. Все заголовки и текст пиши СТРОГО на языке: "${currentLang}".
+      const prompt = `Проведи МАКСИМАЛЬНО ДЕТАЛЬНЫЙ и углубленный академический разбор текста. 
+Все заголовки и текст пиши СТРОГО на языке: "${currentLang}".
 
-СТРОГИЕ ПРАВИЛА ФОРМАТА (НЕ ИСПОЛЬЗУЙ МОНОТОННЫЕ ДЛИННЫЕ ПРЕДЛОЖЕНИЯ!):
-1. Использовать СТРОГО следующие 8 названий разделов (на языке "${currentLang}"):
+СТРОГИЕ ПРАВИЛА ГЛУБОКОГО АНАЛИЗА:
+1. Используй СТРОГО 8 разделов (на языке "${currentLang}"):
 ${t.sec1}
 ${t.sec2}
 ${t.sec3}
@@ -371,16 +372,18 @@ ${t.sec6}
 ${t.sec7}
 ${t.sec8}
 
-2. Для разделов с 1 по 7 пиши каждый пункт СТРОГО в 3 части через символ "|":
-   Формат: [ITEM] Тег_Ключ | Короткий_Главный_Вывод (3-7 слов) | Подробности и доказательства из текста (1-2 коротких предложения).
-   Пример: [ITEM] Methodological Dependency | Упор на вторичные источники | Исследование базируется на качественном обзоре литературы.
+2. В каждом разделе с 1 по 7 выдели от 3 до 6 подробных карточек. Не ограничивайся общими словами — извлекай конкретные имена, даты, термины, цифры, причинно-следственные связи и академические аргументы из текста!
 
-3. Для раздела 8 пиши в формате:
-   [CITATION] Тема_Цитаты: "Текст цитаты (стр. Х)"
+3. Формат для разделов 1–7 (СТРОГО через "|"):
+   [ITEM] ТЕГ_ТЕМЫ | Главный тезис или ключевая находка (5-10 слов) | Подробный, глубокий академический анализ с деталями, фактами и контекстом из источника (2-4 развернутых предложения).
 
-4. Без вводных и заключительных слов.
+4. Формат для раздела 8:
+   [CITATION] Контекст_или_Тема: "Точная важная цитата из текста"
 
-Текст: "${textToAnalyze.substring(0, 5000)}"`;
+5. Без вводных и заключительных фраз.
+
+Текст источника:
+"${textToAnalyze.substring(0, 40000)}"`;
 
       try {
         const responseText = await callGemini(prompt);
@@ -404,7 +407,7 @@ ${t.sec8}
             .dash-card-header {
               background: #0f172a;
               color: #ffffff;
-              padding: 12px 20px;
+              padding: 14px 20px;
               font-size: 14px;
               font-weight: 700;
               letter-spacing: 0.5px;
@@ -414,19 +417,19 @@ ${t.sec8}
             .dash-card-grid {
               padding: 16px;
               display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-              gap: 14px;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 16px;
               background: #f8fafc;
             }
             .grid-item-card {
               background: #ffffff;
               border: 1px solid #e2e8f0;
               border-radius: 8px;
-              padding: 14px;
+              padding: 16px;
               display: flex;
               flex-direction: column;
-              gap: 6px;
-              box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+              gap: 8px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.03);
             }
             .item-header {
               display: flex;
@@ -445,22 +448,22 @@ ${t.sec8}
             .badge-green { background: #dcfce7; color: #15803d; }
 
             .item-core-claim {
-              font-size: 14px;
+              font-size: 14.5px;
               font-weight: 700;
               color: #0f172a;
-              line-height: 1.3;
+              line-height: 1.35;
             }
             .item-detail-text {
-              font-size: 12.5px;
-              color: #64748b;
-              line-height: 1.5;
+              font-size: 13px;
+              color: #475569;
+              line-height: 1.6;
             }
             .quote-card {
               grid-column: 1 / -1;
               background: #ffffff;
               border-left: 4px solid #0284c7;
               border-radius: 6px;
-              padding: 12px 16px;
+              padding: 14px 18px;
               border-top: 1px solid #e2e8f0;
               border-right: 1px solid #e2e8f0;
               border-bottom: 1px solid #e2e8f0;
@@ -473,10 +476,10 @@ ${t.sec8}
               margin-bottom: 4px;
             }
             .quote-body {
-              font-size: 13px;
+              font-size: 13.5px;
               font-style: italic;
               color: #334155;
-              line-height: 1.5;
+              line-height: 1.55;
             }
           </style>
 
